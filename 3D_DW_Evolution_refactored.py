@@ -1,4 +1,3 @@
-#!/C:\Users\Admin\anaconda3
 """
 3D cosmological evolution equation for MLRSM potential solved by finite differences.
 """
@@ -427,8 +426,10 @@ def model(save_plot=True):
         if save_plot:
             filename = 'tmp_%04d.png' % n
             plt.savefig(filename)  # time consuming!
-        ax1.collections.remove(u_surf)
-        ax2.collections.remove(v_surf)
+       # ax1.collections.remove(u_surf)
+       # ax2.collections.remove(v_surf)
+        ax1.cla()
+        ax2.cla()
         plt.close('all')
         plt.draw()
         time.sleep(1)
