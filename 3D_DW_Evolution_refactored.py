@@ -397,17 +397,23 @@ def model(save_plot=True):
 #             f = h5py.File(name, "w")
 #             f.create_dataset('data', data=data)
 #         hdf5_write(u,filename)
-            
+
+
+
+        # function to append data to h5py file
+
+        def hdf5_write(data,name):
+            f = h5py.File(name, "w")
+            f.create_dataset(f'field_{n}', data=data)
+            f.close()
+
+
         filename = 'field_l.h5'
         if glob.glob(filename):
             f = h5py.File(filename, "a")
             f[f'field_{n}'] = u
             f.close()
         else:
-            def hdf5_write(data,name):
-                f = h5py.File(name, "w")
-                f.create_dataset(f'field_{n}', data=data)
-                f.close()
             hdf5_write(u,filename) 
             
         filename = 'field_r.h5'
@@ -416,10 +422,6 @@ def model(save_plot=True):
             f[f'field_{n}'] = v
             f.close()
         else:
-            def hdf5_write(data,name):
-                f = h5py.File(name, "w")
-                f.create_dataset(f'field_{n}', data=data)
-                f.close()
             hdf5_write(v,filename)           
 
 
